@@ -48,26 +48,29 @@
 ---
 
 ### Step 1: Search for Log Analytics Workspace
-> Locate the right workspace for querying log data.
 
-- Search in **Azure** for **Log Analytics Workspaces**
-- Click on the correct workspace from the list
+→ Navigate to: `Azure Portal → Search → Log Analytics Workspaces → [Select Workspace]`
+
+![Step 1](https://github.com/Samuel-Cavada/Azure-Log-Analytics-with-KQL/blob/main/images/ALAK1.png)
 
 ---
 
 ### Step 2: Open Logs and Set Query Mode
-> Navigate to the log query area.
 
-- Click on **Logs** in the left-hand navigation panel
-- Change the query mode to **KQL** (Kusto Query Language)
+→ Navigate to: `Workspace → Logs → Query Editor → Change to KQL`
+
+![Step 2](https://github.com/Samuel-Cavada/Azure-Log-Analytics-with-KQL/blob/main/images/ALAK2.png)
 
 ---
 
 ### Step 3: Run Queries Using KQL
-> Begin querying log data.
 
-- Use **KQL syntax** to search for the logs you need  
-  > Note: Azure uses KQL, not SQL
+→ Navigate to: `Query Editor → Type Query → Run`  
+→ Use proper KQL syntax to explore log data  
+→ Note: `Azure uses KQL, not SQL`
+
+![Step 3](https://github.com/Samuel-Cavada/Azure-Log-Analytics-with-KQL/blob/main/images/ALAK3.png)
+
 
 ---
 
