@@ -38,9 +38,8 @@
 ## Environment Setup
 > Accessed the Azure Portal with proper permissions to utilize Log Analytics Workspaces and run queries against ingested log data.
 
-| ![Entra ID](https://github.com/Samuel-Cavada/Azure-Log-Analytics-with-KQL/raw/main/images/Entra%20ID%20(Azure)%20Authentication%20Failures.jpg) | ![Malicious Traffic](https://github.com/Samuel-Cavada/Azure-Log-Analytics-with-KQL/raw/main/images/Malicious%20Traffic%20Entering%20the%20Network.jpg) | ![VM Auth Failures](https://github.com/Samuel-Cavada/Azure-Log-Analytics-with-KQL/raw/main/images/VM%20Authentication%20Failures.jpg) |
-|:--:|:--:|:--:|
-| Entra ID Auth Failures | Malicious Traffic | VM Auth Failures |
+![Entra ID Authentication Success](https://github.com/Samuel-Cavada/Azure-Log-Analytics-with-KQL/raw/main/images/Entra%20ID%20(Azure)%20Authentication%20Success.jpg)
+
 
 
 
@@ -77,6 +76,19 @@
 → Note: `Azure uses KQL, not SQL`
 
 ![Step 3](https://github.com/Samuel-Cavada/Azure-Log-Analytics-with-KQL/blob/main/images/ALAK3.png)
+
+---
+
+## Examples of Outputs
+
+### Entra ID (Azure) Authentication Failures
+<img src="https://github.com/Samuel-Cavada/Azure-Log-Analytics-with-KQL/raw/main/images/Entra%20ID%20(Azure)%20Authentication%20Failures.jpg" width="1000"/>
+
+### Malicious Traffic Entering the Network
+<img src="https://github.com/Samuel-Cavada/Azure-Log-Analytics-with-KQL/raw/main/images/Malicious%20Traffic%20Entering%20the%20Network.jpg" width="1000"/>
+
+### VM Authentication Failures
+<img src="https://github.com/Samuel-Cavada/Azure-Log-Analytics-with-KQL/raw/main/images/VM%20Authentication%20Failures.jpg" width="1000"/>
 
 
 ---
