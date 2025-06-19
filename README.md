@@ -38,6 +38,13 @@
 ## Environment Setup
 > Accessed the Azure Portal with proper permissions to utilize Log Analytics Workspaces and run queries against ingested log data.
 
+| ![Entra ID](https://github.com/Samuel-Cavada/Azure-Log-Analytics-with-KQL/raw/main/images/Entra%20ID%20(Azure)%20Authentication%20Failures.jpg) | ![Malicious Traffic](https://github.com/Samuel-Cavada/Azure-Log-Analytics-with-KQL/raw/main/images/Malicious%20Traffic%20Entering%20the%20Network.jpg) | ![VM Auth Failures](https://github.com/Samuel-Cavada/Azure-Log-Analytics-with-KQL/raw/main/images/VM%20Authentication%20Failures.jpg) |
+|:--:|:--:|:--:|
+| Entra ID Auth Failures | Malicious Traffic | VM Auth Failures |
+
+
+
+
 ---
 
 ## Walkthrough
