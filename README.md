@@ -81,14 +81,128 @@
 
 ## Examples of Outputs
 
+
 ### Entra ID (Azure) Authentication Failures
 <img src="https://github.com/Samuel-Cavada/Azure-Log-Analytics-with-KQL/raw/main/images/Entra%20ID%20(Azure)%20Authentication%20Failures.jpg" width="1000"/>
 
+```json
+{
+  "type": 3,
+  "content": {
+    "version": "KqlItem/1.0",
+    "query": "SigninLogs\n| where ResultType != 0 and Identity !contains \"-\"\n| summarize LoginCount = count() by Identity, Latitude = tostring(LocationDetails[\"geoCoordinates\"][\"latitude\"]), Longitude = tostring(LocationDetails[\"geoCoordinates\"][\"longitude\"]), City = tostring(LocationDetails[\"city\"]), Country = tostring(LocationDetails[\"countryOrRegion\"])\n| order by LoginCount desc\n| project Identity, Latitude, Longitude, City, Country, LoginCount, friendly_label = strcat(Identity, \" - \", City, \", \", Country)\n",
+    "size": 3,
+    "timeContext": {
+      "durationMs": 2592000000
+    },
+    "queryType": 0,
+    "resourceType": "microsoft.operationalinsights/workspaces",
+    "visualization": "map",
+    "mapSettings": {
+      "locInfo": "LatLong",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "sizeSettings": "LoginCount",
+      "sizeAggregation": "Sum",
+      "labelSettings": "friendly_label",
+      "legendMetric": "LoginCount",
+      "numberOfMetrics": 0,
+      "legendAggregation": "Count",
+      "itemColorSettings": {
+        "nodeColorField": "LoginCount",
+        "colorAggregation": "Count",
+        "type": "heatmap",
+        "heatmapPalette": "greenRed"
+      }
+    }
+  },
+  "name": "query - 2"
+}
+
+```
+
+
+----
 ### Malicious Traffic Entering the Network
 <img src="https://github.com/Samuel-Cavada/Azure-Log-Analytics-with-KQL/raw/main/images/Malicious%20Traffic%20Entering%20the%20Network.jpg" width="1000"/>
 
+```json
+{
+  "type": 3,
+  "content": {
+    "version": "KqlItem/1.0",
+    "query": "let GeoIPDB_FULL = _GetWatchlist(\"geoip\");\nlet MaliciousFlows = AzureNetworkAnalytics_CL \n| where FlowType_s == \"MaliciousFlow\"\n//| where SrcIP_s == \"10.0.0.5\" \n| order by TimeGenerated desc\n| project TimeGenerated, FlowType = FlowType_s, IpAddress = SrcIP_s, DestinationIpAddress = DestIP_s, DestinationPort = DestPort_d, Protocol = L7Protocol_s, NSGRuleMatched = NSGRules_s;\nMaliciousFlows\n| evaluate ipv4_lookup(GeoIPDB_FULL, IpAddress, network)\n| project TimeGenerated, FlowType, IpAddress, DestinationIpAddress, DestinationPort, Protocol, NSGRuleMatched, latitude, longitude, city = cityname, country = countryname, friendly_location = strcat(cityname, \" (\", countryname, \")\")",
+    "size": 3,
+    "timeContext": {
+      "durationMs": 2592000000
+    },
+    "queryType": 0,
+    "resourceType": "microsoft.operationalinsights/workspaces",
+    "visualization": "map",
+    "mapSettings": {
+      "locInfo": "LatLong",
+      "locInfoColumn": "countryname",
+      "latitude": "latitude",
+      "longitude": "longitude",
+      "sizeSettings": "city",
+      "sizeAggregation": "Count",
+      "opacity": 0.8,
+      "labelSettings": "friendly_location",
+      "legendMetric": "IpAddress",
+      "legendAggregation": "Count",
+      "itemColorSettings": {
+        "nodeColorField": "city",
+        "colorAggregation": "Count",
+        "type": "heatmap",
+        "heatmapPalette": "greenRed"
+      }
+    }
+  },
+  "name": "query - 0"
+}
+```
+
+
+---
 ### VM Authentication Failures
 <img src="https://github.com/Samuel-Cavada/Azure-Log-Analytics-with-KQL/raw/main/images/VM%20Authentication%20Failures.jpg" width="1000"/>
+
+```json
+{
+  "type": 3,
+  "content": {
+    "version": "KqlItem/1.0",
+    "query": "let GeoIPDB_FULL = _GetWatchlist(\"geoip\");\nDeviceLogonEvents\n| where ActionType == \"LogonFailed\"\n| order by TimeGenerated desc\n| evaluate ipv4_lookup(GeoIPDB_FULL, RemoteIP, network)\n| summarize LoginAttempts = count() by RemoteIP, City = cityname, Country = countryname, friendly_location = strcat(cityname, \" (\", countryname, \")\"), Latitude = latitude, Longitude = longitude;",
+    "size": 3,
+    "timeContext": {
+      "durationMs": 2592000000
+    },
+    "queryType": 0,
+    "resourceType": "microsoft.operationalinsights/workspaces",
+    "visualization": "map",
+    "mapSettings": {
+      "locInfo": "LatLong",
+      "locInfoColumn": "Country",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "sizeSettings": "LoginAttempts",
+      "sizeAggregation": "Count",
+      "opacity": 0.8,
+      "labelSettings": "friendly_location",
+      "legendMetric": "LoginAttempts",
+      "legendAggregation": "Count",
+      "itemColorSettings": {
+        "nodeColorField": "LoginAttempts",
+        "colorAggregation": "Count",
+        "type": "heatmap",
+        "heatmapPalette": "greenRed"
+      }
+    }
+  },
+  "name": "query - 0"
+}
+
+```
 
 
 ---
